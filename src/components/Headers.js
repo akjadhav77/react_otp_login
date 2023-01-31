@@ -2,6 +2,7 @@ import React from 'react'
 import Container from 'react-bootstrap/Container';
 import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
+import { NavLink } from 'react-router-dom';
 
 
 const Headers = () => {
@@ -9,9 +10,10 @@ const Headers = () => {
     <>
         <Navbar bg="light" variant="light">
         <Container>
-          <Navbar.Brand href="#home">AkCloud</Navbar.Brand>
+          <NavLink to="/" className='text-dark text-decoration-none'>AkCloud</NavLink>
           <Nav className="">
-            <Nav.Link href="#home">Register</Nav.Link>
+            <NavLink to="/register" className='mt-3 mx-2 text-dark text-decoration-none'>Register</NavLink>
+            <img src='/logo192.png' style={{width: 50}}/>
           </Nav>
         </Container>
       </Navbar>

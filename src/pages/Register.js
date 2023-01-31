@@ -2,6 +2,8 @@ import React, { useState } from 'react'
 import '../styles/mix.css'
 import { ToastContainer, toast } from 'react-toastify';
 import { NavLink } from 'react-router-dom';
+import { registerFunction } from '../services/Apis';
+import { useNavigate } from 'react-router-dom';
 
 const Register = () => {
 
@@ -13,6 +15,8 @@ const Register = () => {
         password: '',
     });
 
+    const navigate = useNavigate();
+
     // set input value
     const handleChange = (e)=> {
         const {name, value} = e.target;
@@ -22,7 +26,7 @@ const Register = () => {
 
     // this fuction is to validate signup button after clicking on sign up button to validate registred data that has been entered by the user
     // register data
-    const handleSubmit = (e)=> {
+    const handleSubmit = async(e)=> {
         e.preventDefault();
         const {fname, email, password} = inputdata;
 
@@ -42,7 +46,16 @@ const Register = () => {
             toast.error('Password should contain atleast 6 characters')
         }
         else {
-            toast.success('User registred successfully!')
+            const response = await registerFunction(inputdata)
+            // console.log(response)
+
+            if (response.status === 200) {
+                setInputdata({...inputdata,fname:'',email:'',password:''});
+                navigate('/')
+            }
+            else {
+                toast.error(response.response.data.error)
+            }
         }
     }
 

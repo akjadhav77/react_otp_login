@@ -44,7 +44,7 @@ section .form_data{
 }
 
 .form_data form{
-    margin-top: 45px;
+    margin-top: 25px;
     width: 100%;
     padding: 10px 50px;
 }
